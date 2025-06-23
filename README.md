@@ -1,6 +1,6 @@
 # F# for the cloud worker
 
-Repository with code etc from blog posts @ https://dev.to/eriklz
+Repository with code etc from blog posts @ https://dev.to/eriklz and https://cloudgnosis.org
 
 Code samples that have multiple versions will have separate commits with
 each version in blog posts. Go back in git history to see earlier versions
