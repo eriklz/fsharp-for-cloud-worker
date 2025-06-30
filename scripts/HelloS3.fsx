@@ -8,18 +8,20 @@ open Amazon.S3
 open Amazon.S3.Model
 
 let getBucketInfo (bucket: S3Bucket) =
-    sprintf "Name: %s created at %O" bucket.BucketName bucket.CreationDate
+    $"Name: {bucket.BucketName} created at {bucket.CreationDate}"
 
 let listBuckets (s3Client: AmazonS3Client) =
-    async {
-        let! response = s3Client.ListBucketsAsync() |> Async.AwaitTask
+    task {
+        let! response = s3Client.ListBucketsAsync()
         return response
     }
 
 let helloS3 () =
-    let client = new AmazonS3Client()
-    let response = (listBuckets client) |> Async.RunSynchronously
-    let bucketsInfo = (List.ofSeq response.Buckets) |> List.map getBucketInfo
-    for bucketInfo in bucketsInfo do
-            printfn "%s" bucketInfo
+    task {
+        let client = new AmazonS3Client()
+        let! response = listBuckets client
+        let bucketsInfo = List.ofSeq response.Buckets |> List.map getBucketInfo
+        for bucketInfo in bucketsInfo do
+                printfn "%s" bucketInfo
+    } |> Async.AwaitTask |> Async.RunSynchronously
 helloS3()
