@@ -12,8 +12,7 @@ let getBucketInfo (bucket: S3Bucket) =
 
 let listBuckets (s3Client: AmazonS3Client) =
     task {
-        let! response = s3Client.ListBucketsAsync()
-        return response
+        return! s3Client.ListBucketsAsync()
     }
 
 let helloS3 () =
