@@ -1,3 +1,5 @@
+**This repository has moved to https://codeberg.org/eriklz/fsharp-for-cloud-worker**
+
 # F# for the cloud worker
 
 Repository with code etc from blog posts @ https://dev.to/eriklz and https://eriklz.online
